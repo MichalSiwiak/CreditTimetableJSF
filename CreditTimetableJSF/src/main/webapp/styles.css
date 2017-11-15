@@ -1,0 +1,113 @@
+.input{
+	text-align: center;
+	width: 150px;
+	margin: auto;
+	border: none;
+	border-radius: 25px;
+	margin-bottom: 5px;
+}
+
+.export {
+	float: right;
+	width: 100px;
+}
+
+body
+{
+	background-color: #247999;
+	font-family: 'Lato', sans-serif;
+}
+
+#container
+{
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#manu
+{
+	background-color: #303030;
+	margin-top: 10px;
+	color: #ffffff;
+	padding: 10px;
+}
+
+#topbar
+{
+	background-color: #197047;
+	color: white;
+	padding:10px;
+	margin-top:5px;
+	margin-bottom: 10px;
+	height: 170px;
+}
+
+#topbarR
+{
+	float: left;
+	padding: 20px;
+	width: 760px;
+	font-size: 16px;
+	text-align: justify;
+}
+
+#content
+{
+	text-align: center;
+	padding: 40px;
+	width: 920px;
+	background-color: #dedede;
+	min-height: 580px;
+	color: black;
+	font-size: 12px;
+}
+
+#footer
+{
+	clear: both;
+	color: white;
+	text-align: left;
+	padding: 20px;
+	font-size: 11px;
+}
+
+.option
+{
+	float:left;
+	min-width: 50px;
+	height: 25px;
+	font-size: 20px;
+	padding: 10px;
+	border-right: 2px #444444;
+	opacity: 0.8;
+}
+
+.option:hover
+{
+	background-color: #000000;
+	cursor: pointer;
+}
+
+.bigtitle
+{
+	font-size: 32px;
+	font-weight: 900;
+	letter-spacing: 2px;
+}
+
+.commandLink:link{
+	color: white;
+	text-decoration: none;
+}
+
+.commandLink:visited{
+	color: white;
+	text-decoration: none;
+}
+
+
+
+
+
+

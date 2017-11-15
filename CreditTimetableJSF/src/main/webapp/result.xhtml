@@ -1,0 +1,108 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Generator harmonogramu kredytu</title>
+	<link href="styles.css" rel="stylesheet" type="text/css" />
+	<link
+		href="https://fonts.googleapis.com/css?family=Lato:400,900&amp;subset=latin-ext"
+		rel="stylesheet" />
+	<link href="css/fontello.css" rel="stylesheet" type="text/css" />
+</h:head>
+<h:body>
+	<div id="container">
+		<h:form>
+			<div id="manu">
+				<div class="option">
+					<h:commandLink class="commandLink"
+						action="#{creditBean.newCalculate}">Strona główna</h:commandLink>
+				</div>
+				<div class="option">
+					<h:commandLink class="commandLink"
+						action="about.xhtml?faces-redirect=true">O Projekcie</h:commandLink>
+				</div>
+				<div class="option">
+					<a class="commandLink"
+						href="https://github.com/MichalSiwiak/CreditTimetableJSF"
+						target="_blank">Kod źródłowy<i class="icon-github"></i>
+					</a>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</h:form>
+		<div id="topbar">
+			<div id="topbarR">
+				<span class="bigtitle">Generator harmonogramu kredytu</span>
+				<div style="height: 15px;"></div>
+				Przy użyciu aplikacji dowiesz się, jakiej wysokości zapłacisz ratę
+				wybranego przez Ciebie kredytu mieszkaniowego. Dowiesz się ponadto
+				jaki będzie przybliżony koszt Twojego kredytu oraz wygenerujesz
+				harmonogram spłaty.
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+
+		<div id="content">
+			<h1>Harmonogram spłaty kredytu</h1>
+			<h:form id="form">
+				<p:growl id="msgs" showDetail="true" />
+				<br />
+
+				<p:splitButton value="Eksportuj do " icon="ui-icon-disk">
+					<p:menuitem value="Excel"
+						actionListener="#{creditBean.exportToExcel}" ajax="false" />
+					<p:menuitem value="PDF" actionListener="#{creditBean.exportToPdf}"
+						ajax="false" />
+				</p:splitButton>
+
+				<br />
+				<br />
+				<p:dataTable id="table" value="#{creditBean.rates}" var="rate"
+					stickyHeader="true">
+					<p:column>
+						<f:facet name="header">Numer Raty</f:facet>    				
+               #{rate.period}
+               </p:column>
+					<p:column>
+						<f:facet name="header">Odsetki</f:facet>    				
+               #{rate.interest}
+               </p:column>
+					<p:column>
+						<f:facet name="header">Kapitał</f:facet>    				
+               #{rate.capitalPart}
+               </p:column>
+					<p:column>
+						<f:facet name="header">Rata</f:facet>    				
+               #{rate.pmt}
+               </p:column>
+					<p:column>
+						<f:facet name="header">Saldo zadłużenia</f:facet>    				
+               #{rate.debtBalance}
+            </p:column>
+				</p:dataTable>
+			</h:form>
+		</div>
+		<div id="footer">
+			Powyższa symulacja wyliczenia raty kredytu dotyczy produktów
+			oferowanych na stronie www.bankier.pl i ma charakter wyłącznie
+			szacunkowy, a przez to nie stanowi oferty w rozumieniu art. 66
+			Kodeksu cywilnego. Proces badania zdolności kredytowej jest procesem
+			wieloetapowym, polegającym na gromadzeniu i sprawdzaniu informacji
+			dotyczących kondycji finansowej podmiotu wnioskującego o udzielenie
+			kredytu. Zgodnie z art. 70 ust. 1 ustawy z dnia 29 sierpnia 1997 r.
+			Prawo bankowe (t.j. Dz.U. 2002r. Nr 72, poz. 665 ze zm.), Bank jest
+			uprawniony do żądania od podmiotu wnioskującego o udzielenie kredytu
+			dostarczenia wymaganych przez siebie dokumentów i informacji,
+			niezbędnych do dokonania pełnej oceny zdolności kredytowej, jak też
+			wydania decyzji kredytowej. <br /> <br /> 2017r. &copy; Michał
+			Siwiak. Wszelkie prawa zastrzeżone
+		</div>
+	</div>
+</h:body>
+</html>

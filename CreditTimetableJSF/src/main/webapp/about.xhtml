@@ -1,0 +1,92 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Generator harmonogramu kredytu</title>
+	<link href="styles.css" rel="stylesheet" type="text/css" />
+	<link
+		href="https://fonts.googleapis.com/css?family=Lato:400,900&amp;subset=latin-ext"
+		rel="stylesheet" />
+	<link href="css/fontello.css" rel="stylesheet" type="text/css" />
+</h:head>
+<h:body>
+	<div id="container">
+		<h:form>
+			<div id="manu">
+				<div class="option">
+					<h:commandLink class="commandLink"
+						action="#{creditBean.newCalculate}">Strona główna</h:commandLink>
+				</div>
+				<div class="option">
+					<h:commandLink class="commandLink"
+						action="opis.xhtml?faces-redirect=true">O Projekcie</h:commandLink>
+				</div>
+				<div class="option">
+					<a class="commandLink"
+						href="https://github.com/MichalSiwiak/CreditTimetableJSF"
+						target="_blank">Kod źródłowy<i class="icon-github"></i>
+					</a>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</h:form>
+		<div id="topbar">
+			<div id="topbarR">
+				<span class="bigtitle">Generator harmonogramu kredytu</span>
+				<div style="height: 15px;"></div>
+				Przy użyciu aplikacji dowiesz się, jakiej wysokości zapłacisz ratę
+				wybranego przez Ciebie kredytu mieszkaniowego. Dowiesz się ponadto
+				jaki będzie przybliżony koszt Twojego kredytu oraz wygenerujesz
+				harmonogram spłaty.
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+
+		<div id="content"
+			style="text-align: left; ! important; font-size: 14px;!important">
+			Aplikacja internetowa pobiera oferty kredytów mieszkaniowych ze
+			strony <a href="https://www.bankier.pl/kredyty-hipoteczne/porownaj-oferty" target="_blank">www.bankier.pl/kredyty-hipoteczne/porownaj-oferty</a>
+			korzystając z biblioteki <b>jsoup</b>. Użytkownik ma możliwość wyboru
+			kredytu mieszkaniowego oraz wygenerowania harmonogramu kredytu metodą
+			rat równych. Rata kredytu obliczana jest na podstawie wartości
+			wprowadzonych przez użytkownika. Stopa procentowa jest sumą marży
+			wybranej oferty kredytu oraz stałego wiboru 3M w wysokości: 1.73%.
+			Użytkownik ma możliwość wyeksportowania harmonogramu spłaty kredytu
+			do pliku Excel.<br /> <br /> Narzędzia i technologie użyte do
+			aplikacji:
+			<ul>
+				<li>Java</li>
+				<li>JavaServer Faces</li>
+				<li>Primefaces</li>
+				<li><a href="https://jsoup.org/" target="_blank">jsoup.org</a></li>
+				<li><a href="https://poi.apache.org/" target="_blank">poi.apache.org</a></li>
+				<li><a href="https://itextpdf.com/" target="_blank">itextpdf.com</a></li>
+			</ul>
+			<br /> <br /> Pod <a target="_blank"
+				href="https://github.com/MichalSiwiak/CreditTimetableJSF">linkiem
+			</a> dostępny jest kod projektu maven.
+		</div>
+		<div id="footer">
+			Powyższa symulacja wyliczenia raty kredytu dotyczy produktów
+			oferowanych na stronie www.bankier.pl i ma charakter wyłącznie
+			szacunkowy, a przez to nie stanowi oferty w rozumieniu art. 66
+			Kodeksu cywilnego. Proces badania zdolności kredytowej jest procesem
+			wieloetapowym, polegającym na gromadzeniu i sprawdzaniu informacji
+			dotyczących kondycji finansowej podmiotu wnioskującego o udzielenie
+			kredytu. Zgodnie z art. 70 ust. 1 ustawy z dnia 29 sierpnia 1997 r.
+			Prawo bankowe (t.j. Dz.U. 2002r. Nr 72, poz. 665 ze zm.), Bank jest
+			uprawniony do żądania od podmiotu wnioskującego o udzielenie kredytu
+			dostarczenia wymaganych przez siebie dokumentów i informacji,
+			niezbędnych do dokonania pełnej oceny zdolności kredytowej, jak też
+			wydania decyzji kredytowej. <br /> <br /> 2017r. &copy; Michał
+			Siwiak. Wszelkie prawa zastrzeżone
+		</div>
+	</div>
+</h:body>
+</html>

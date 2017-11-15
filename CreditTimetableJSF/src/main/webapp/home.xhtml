@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Generator harmonogramu kredytu</title>
+	<link href="styles.css" rel="stylesheet" type="text/css" />
+	<link
+		href="https://fonts.googleapis.com/css?family=Lato:400,900&amp;subset=latin-ext"
+		rel="stylesheet" />
+
+	<link href="css/fontello.css" rel="stylesheet" type="text/css" />
+</h:head>
+<h:body>
+	<div id="container">
+		<h:form>
+			<div id="manu">
+				<div class="option">
+					<h:commandLink class="commandLink"
+						action="#{creditBean.newCalculate}">Strona główna</h:commandLink>
+				</div>
+				<div class="option">
+					<h:commandLink class="commandLink"
+						action="about.xhtml?faces-redirect=true">O Projekcie</h:commandLink>
+				</div>
+				<div class="option">
+					<a class="commandLink"
+						href="https://github.com/MichalSiwiak/CreditTimetableJSF"
+						target="_blank">Kod źródłowy<i class="icon-github"></i>
+					</a>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</h:form>
+		<div id="topbar">
+			<div id="topbarR">
+				<span class="bigtitle">Generator harmonogramu kredytu</span>
+				<div style="height: 15px;"></div>
+				Przy użyciu aplikacji dowiesz się, jakiej wysokości zapłacisz ratę
+				wybranego przez Ciebie kredytu mieszkaniowego. Dowiesz się ponadto
+				jaki będzie przybliżony koszt Twojego kredytu oraz wygenerujesz
+				harmonogram spłaty.
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+
+		<div id="content">
+			<h:form id="form">
+				<p:growl id="msgs" showDetail="true" sticky="true" />
+				<center>
+
+					Kwota kredytu :<br />
+					<p:inputText id="amount" styleClass="input"
+						value="#{creditBean.amount}">
+						<f:validateLength minimum="2" />
+					</p:inputText>
+
+
+					<br />Marża <i>(wybierz z tabeli) :</i><br />
+					<p:inputText class="input" id="margin" readonly="true"
+						value="#{bankierList.marginSelected}" />
+
+					<br /> Okres kredytowania <i>(miesiące)</i> :<br />
+					<p:inputText class="input" id="period" value="#{creditBean.period}" />
+					<br />
+
+					<p:slider class="input" for="period" minValue="1" maxValue="360" />
+					<br />
+
+					<p:commandButton value="Generuj harmonogram spłaty"
+						action="#{creditBean.calculate}" update=":form:msgs" />
+					<br /> <br /> <br />
+
+				</center>
+				<p:dataTable id="customers" var="offer"
+					value="#{bankierList.offers}"
+					selection="#{bankierList.selectedOffer}" rowKey="#{offer.id}"
+					selectionMode="single">
+					<f:facet name="header">
+            Wybierz ofertę kredytu: <i>(żródło: <a
+							href="http://www.bankier.pl/kredyty-hipoteczne/porownaj-oferty"
+							target="_blank">www.bankier.pl/kredyty-hipoteczne/porownaj-oferty</a>)
+						</i>
+					</f:facet>
+					<p:ajax event="rowSelect" listener="#{bankierList.onRowSelect}"
+						update=":form:msgs" />
+					<p:ajax event="rowSelect" listener="#{bankierList.updateMargin}"
+						update=":form:margin" />
+					<p:column headerText="ID">
+						<h:outputText value="#{offer.id}" />
+					</p:column>
+					<p:column headerText="Nazwa Banku">
+						<h:outputText value="#{offer.bankName}" />
+					</p:column>
+					<p:column headerText="Produkt">
+						<h:outputText value="#{offer.productName}" />
+					</p:column>
+					<p:column headerText="Marża Kredytu">
+						<h:outputText value="#{offer.margin}" />
+					</p:column>
+					<p:column headerText="Prowizja">
+						<h:outputText value="#{offer.commission}" />
+					</p:column>
+					<p:column headerText="RRSO">
+						<h:outputText value="#{offer.rrso}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</div>
+		<div id="footer">
+			Powyższa symulacja wyliczenia raty kredytu dotyczy produktów
+			oferowanych na stronie www.bankier.pl i ma charakter wyłącznie
+			szacunkowy, a przez to nie stanowi oferty w rozumieniu art. 66
+			Kodeksu cywilnego. Proces badania zdolności kredytowej jest procesem
+			wieloetapowym, polegającym na gromadzeniu i sprawdzaniu informacji
+			dotyczących kondycji finansowej podmiotu wnioskującego o udzielenie
+			kredytu. Zgodnie z art. 70 ust. 1 ustawy z dnia 29 sierpnia 1997 r.
+			Prawo bankowe (t.j. Dz.U. 2002r. Nr 72, poz. 665 ze zm.), Bank jest
+			uprawniony do żądania od podmiotu wnioskującego o udzielenie kredytu
+			dostarczenia wymaganych przez siebie dokumentów i informacji,
+			niezbędnych do dokonania pełnej oceny zdolności kredytowej, jak też
+			wydania decyzji kredytowej. <br /> <br /> 2017r. &copy; Michał
+			Siwiak. Wszelkie prawa zastrzeżone
+		</div>
+	</div>
+</h:body>
+</html>
